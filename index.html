@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Contoh Memutar Video YouTube</title>
+  <style>
+    .player {
+      width: 640px;
+      height: 360px;
+    }
+  </style>
+</head>
+<body>
+  <div id="player1" class="player"></div>
+  <div id="player2" class="player"></div>
+
+  <script src="https://www.youtube.com/player_api"></script>
+  <script>
+    var player1, player2;
+var isPlayer1Ready = false;
+var isPlayer2Ready = false;
+
+function onYouTubePlayerAPIReady() {
+  player1 = new YT.Player('player1', {
+    videoId: 'KtBnIv2K7dQ',
+    events: {
+      'onReady': onPlayer1Ready
+    }
+  });
+  player2 = new YT.Player('player2', {
+    videoId: 'z4m6PiWnhZU',
+    events: {
+      'onReady': onPlayer2Ready
+    }
+  });
+}
+
+function onPlayer1Ready(event) {
+  isPlayer1Ready = true;
+  playIfReady();
+}
+
+function onPlayer2Ready(event) {
+  isPlayer2Ready = true;
+  playIfReady();
+}
+
+function playIfReady() {
+  if (isPlayer1Ready && isPlayer2Ready) {
+    player1.playVideo();
+    player2.playVideo();
+  }
+}
+
+  </script>
+</body>
+</html>
