@@ -8,49 +8,69 @@
       height: 360px;
     }
   </style>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Contoh Video YouTube</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#player1">Video 1</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#player2">Video 2</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
   <div id="player1" class="player"></div>
   <div id="player2" class="player"></div>
 
   <script src="https://www.youtube.com/player_api"></script>
   <script>
     var player1, player2;
-var isPlayer1Ready = false;
-var isPlayer2Ready = false;
+    var isPlayer1Ready = false;
+    var isPlayer2Ready = false;
 
-function onYouTubePlayerAPIReady() {
-  player1 = new YT.Player('player1', {
-    videoId: 'KtBnIv2K7dQ',
-    events: {
-      'onReady': onPlayer1Ready
+    function onYouTubePlayerAPIReady() {
+      player1 = new YT.Player('player1', {
+        videoId: 'KtBnIv2K7dQ',
+        events: {
+          'onReady': onPlayer1Ready
+        }
+      });
+      player2 = new YT.Player('player2', {
+        videoId: 'z4m6PiWnhZU',
+        events: {
+          'onReady': onPlayer2Ready
+        }
+      });
     }
-  });
-  player2 = new YT.Player('player2', {
-    videoId: 'z4m6PiWnhZU',
-    events: {
-      'onReady': onPlayer2Ready
+
+    function onPlayer1Ready(event) {
+      isPlayer1Ready = true;
+      playIfReady();
     }
-  });
-}
 
-function onPlayer1Ready(event) {
-  isPlayer1Ready = true;
-  playIfReady();
-}
+    function onPlayer2Ready(event) {
+      isPlayer2Ready = true;
+      playIfReady();
+    }
 
-function onPlayer2Ready(event) {
-  isPlayer2Ready = true;
-  playIfReady();
-}
-
-function playIfReady() {
-  if (isPlayer1Ready && isPlayer2Ready) {
-    player1.playVideo();
-    player2.playVideo();
-  }
-}
-
+    function playIfReady() {
+      if (isPlayer1Ready && isPlayer2Ready) {
+        player1.playVideo();
+        player2.playVideo();
+      }
+    }
   </script>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
